@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-MZ">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Rede + Consultoria — Marketing Digital, Gestão de Redes Sociais, Automação IA, Desenvolvimento Web e Equipamentos. Beira, Moçambique."/>
+<title>Rede + Consultoria | Soluções Digitais e Tecnológicas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&family=Inter:wght@300;400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-background":            "#0b1c30",
+          "surface-container-highest":"#d3e4fe",
+          "surface-variant":          "#d3e4fe",
+          "surface-container-low":    "#eff4ff",
+          "error-container":          "#ffdad6",
+          "secondary-container":      "#7af2f2",
+          "on-surface-variant":       "#424752",
+          "inverse-surface":          "#213145",
+          "on-secondary-fixed":       "#002020",
+          "surface-dim":              "#cbdbf5",
+          "on-secondary-fixed-variant":"#004f4f",
+          "inverse-on-surface":       "#eaf1ff",
+          "surface":                  "#f8f9ff",
+          "surface-container-high":   "#dce9ff",
+          "tertiary":                 "#374254",
+          "on-primary-container":     "#bbd0ff",
+          "surface-container-lowest": "#ffffff",
+          "surface-container":        "#e5eeff",
+          "on-error-container":       "#93000a",
+          "outline":                  "#727784",
+          "surface-tint":             "#115cb9",
+          "primary-fixed-dim":        "#acc7ff",
+          "surface-bright":           "#f8f9ff",
+          "primary-container":        "#0056b3",
+          "primary":                  "#003f87",
+          "on-secondary":             "#ffffff",
+          "on-primary-fixed-variant": "#004491",
+          "on-error":                 "#ffffff",
+          "on-surface":               "#0b1c30",
+          "error":                    "#ba1a1a",
+          "background":               "#f8f9ff",
+          "on-primary":               "#ffffff",
+          "on-primary-fixed":         "#001a40",
+          "secondary-fixed-dim":      "#5dd9d8",
+          "outline-variant":          "#c2c6d4",
+          "secondary-fixed":          "#7df5f5",
+          "tertiary-container":       "#4e596c",
+          "secondary":                "#006a6a",
+          "on-secondary-container":   "#006e6e",
+          "inverse-primary":          "#acc7ff",
+          "primary-fixed":            "#d7e2ff"
+        },
+        borderRadius: {
+          DEFAULT: "0.125rem",
+          lg:      "0.25rem",
+          xl:      "0.5rem",
+          "2xl":   "1rem",
+          "3xl":   "1.5rem",
+          full:    "0.75rem"
+        },
+        fontFamily: {
+          headline: ["Manrope"],
+          body:     ["Inter"],
+          label:    ["Inter"]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+  body { font-family:'Inter',sans-serif; scroll-behavior:smooth; min-height:max(884px,100dvh); }
+  h1,h2,h3,.font-headline { font-family:'Manrope',sans-serif; }
+  .ghost-border { border:1px solid rgba(194,198,212,0.18); }
+  .text-gradient {
+    background:linear-gradient(135deg,#003f87,#006a6a);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  }
+
+  /* ── Scroll progress bar ── */
+  #progress-bar {
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg,#003f87,#006a6a);
+    z-index:9999; transition:width .1s linear;
+  }
+
+  /* ── Reveal animations — fast, snappy ── */
+  [data-reveal] {
+    opacity:0;
+    transition: opacity .38s cubic-bezier(.16,1,.3,1), transform .38s cubic-bezier(.16,1,.3,1);
+  }
+  [data-reveal="up"]    { transform:translateY(24px); }
+  [data-reveal="left"]  { transform:translateX(-28px); }
+  [data-reveal="right"] { transform:translateX(28px); }
+  [data-reveal="scale"] { transform:scale(.93); }
+  [data-reveal="3d"]    { transform:perspective(700px) rotateX(10deg) translateY(20px) scale(.96); }
+  [data-reveal].visible { opacity:1; transform:none; }
+  [data-delay="1"] { transition-delay:.06s; }
+  [data-delay="2"] { transition-delay:.12s; }
+  [data-delay="3"] { transition-delay:.18s; }
+  [data-delay="4"] { transition-delay:.24s; }
+  [data-delay="5"] { transition-delay:.30s; }
+
+  /* ── Wave dividers ── */
+  .wave-divider { display:block; width:100%; overflow:hidden; line-height:0; }
+  .wave-divider svg { display:block; width:100%; }
+
+  /* ── 3D hero visual float ── */
+  @keyframes float3d {
+    0%,100% { transform:perspective(900px) rotateY(-7deg) rotateX(5deg) translateY(0); }
+    50%     { transform:perspective(900px) rotateY(-3deg) rotateX(2deg) translateY(-14px); }
+  }
+  .hero-3d { animation:float3d 7s ease-in-out infinite; transform-style:preserve-3d; }
+
+  /* ── Floating cards animation ── */
+  @keyframes floatY {
+    0%,100% { transform:translateY(0); }
+    50%      { transform:translateY(-10px); }
+  }
+  .float-card  { animation:floatY 4s ease-in-out infinite; }
+  .float-card-2{ animation:floatY 4s ease-in-out infinite; animation-delay:2s; }
+
+  /* ── 3D tilt cards ── */
+  .tilt-card {
+    transform-style:preserve-3d;
+    transition:transform .18s ease, box-shadow .18s ease;
+    will-change:transform;
+  }
+  .tilt-card:hover { box-shadow:0 28px 60px rgba(0,63,135,.14); }
+  .tilt-card .tilt-shine {
+    position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+    background:linear-gradient(135deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,0) 60%);
+    opacity:0; transition:opacity .18s;
+  }
+  .tilt-card:hover .tilt-shine { opacity:1; }
+
+  /* ── Shimmer entrance for big cards ── */
+  @keyframes shimmerIn {
+    from { background-position:200% center; }
+    to   { background-position:-200% center; }
+  }
+
+  /* ── Section label ── */
+  .sec-label {
+    display:inline-block;
+    font-size:.68rem; font-weight:700; letter-spacing:.18em;
+    text-transform:uppercase; color:#006a6a;
+    background:rgba(0,106,106,.08);
+    padding:3px 12px; border-radius:99px;
+    margin-bottom:10px;
+  }
+
+  /* ── Active nav link ── */
+  .nav-link.active { color:#003f87; border-bottom:2px solid #003f87; padding-bottom:2px; }
+
+  /* ── Footer ── */
+  footer.site-footer { background:#0b1624; color:#94a3b8; font-size:.85rem; }
+  footer.site-footer h4 { color:#fff; font-size:.72rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; margin-bottom:1.1rem; }
+  footer.site-footer a { color:#94a3b8; transition:color .2s; }
+  footer.site-footer a:hover { color:#5dd9d8; }
+  footer.site-footer .foot-divider { border-color:rgba(255,255,255,.07); }
+  .foot-logo-icon { width:44px; height:44px; border-radius:12px; background:linear-gradient(135deg,#003f87,#006a6a); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+</style>
+</head>
+<body class="bg-surface text-on-surface antialiased pb-20 md:pb-0">
+<div id="progress-bar"></div>
+
+<!-- ================================================================
+     HEADER
+================================================================ -->
+<header id="top-bar" class="bg-surface/95 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-outline-variant/20 transition-shadow duration-300">
+  <div class="flex justify-between items-center w-full px-8 md:px-12 py-3 max-w-6xl mx-auto">
+    <!-- Logo -->
+    <a href="#inicio" class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-primary flex items-center justify-center rounded-xl">
+        <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1;">hub</span>
+      </div>
+      <span class="font-headline text-xl tracking-tight font-bold text-primary">Rede + Consultoria</span>
+    </a>
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      <ul class="flex gap-8 text-on-surface-variant font-semibold tracking-wider text-xs uppercase">
+        <li><a href="#inicio"    class="hover:text-secondary transition-colors nav-link" data-section="inicio">Início</a></li>
+        <li><a href="#servicos"  class="hover:text-secondary transition-colors nav-link" data-section="servicos">Serviços</a></li>
+        <li><a href="#sobre"     class="hover:text-secondary transition-colors nav-link" data-section="sobre">Sobre</a></li>
+        <li><a href="#projectos" class="hover:text-secondary transition-colors nav-link" data-section="projectos">Projectos</a></li>
+        <li><a href="#contacto"  class="hover:text-secondary transition-colors nav-link" data-section="contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <!-- CTA -->
+    <a href="https://wa.me/258865443866" target="_blank" rel="noopener"
+       class="hidden md:flex items-center gap-2 bg-secondary text-on-secondary px-5 py-2.5 rounded-xl font-bold text-sm active:scale-95 transition-transform hover:opacity-90">
+      <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">chat</span>
+      WhatsApp
+    </a>
+    <!-- Hamburger -->
+    <button id="hamburger" class="md:hidden p-2 rounded-xl hover:bg-surface-container-low transition-colors">
+      <span class="material-symbols-outlined text-primary">menu</span>
+    </button>
+  </div>
+  <!-- Mobile dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden bg-surface border-t border-outline-variant/20 px-6 py-4 flex flex-col gap-4">
+    <a href="#inicio"    class="mobile-link font-semibold text-sm uppercase tracking-widest text-on-surface-variant py-2 border-b border-outline-variant/10">Início</a>
+    <a href="#servicos"  class="mobile-link font-semibold text-sm uppercase tracking-widest text-on-surface-variant py-2 border-b border-outline-variant/10">Serviços</a>
+    <a href="#sobre"     class="mobile-link font-semibold text-sm uppercase tracking-widest text-on-surface-variant py-2 border-b border-outline-variant/10">Sobre</a>
+    <a href="#projectos" class="mobile-link font-semibold text-sm uppercase tracking-widest text-on-surface-variant py-2 border-b border-outline-variant/10">Projectos</a>
+    <a href="#contacto"  class="mobile-link font-semibold text-sm uppercase tracking-widest text-on-surface-variant py-2">Contacto</a>
+    <a href="https://wa.me/258865443866" target="_blank" rel="noopener"
+       class="bg-secondary text-on-secondary px-5 py-3 rounded-xl font-bold text-sm text-center mt-2">
+      WhatsApp · +258 865 443 866
+    </a>
+  </div>
+</header>
+
+<!-- ================================================================
+     HERO
+================================================================ -->
+<section id="inicio" class="relative min-h-[90vh] flex items-center overflow-hidden pt-20">
+  <!-- Background tint -->
+  <div class="absolute inset-0 bg-gradient-to-br from-surface-container-low via-surface to-surface-container-low -z-10"></div>
+  <div class="absolute top-0 right-0 w-1/2 h-full opacity-30 -z-10 pointer-events-none">
+    <div class="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 blur-3xl"></div>
+  </div>
+
+  <div class="max-w-6xl mx-auto w-full px-8 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center py-20">
+    <!-- Left -->
+    <div class="lg:col-span-7 z-10" data-reveal="up">
+      <span class="sec-label">Beira · Moçambique</span>
+      <h1 class="font-headline text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-[1.05] text-primary mb-5 mt-2">
+        Inovação &amp;<br/>Tecnologia
+        <span class="text-secondary"> Digital.</span>
+      </h1>
+      <p class="text-base md:text-lg text-on-surface-variant max-w-md mb-8 font-normal leading-relaxed">
+        Marketing digital, gestão de redes sociais, automação com IA, desenvolvimento web e fornecimento de equipamentos — tudo para impulsionar o seu negócio.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#servicos"
+           class="px-6 py-3 bg-primary text-on-primary rounded-xl font-bold text-sm shadow-lg shadow-primary/20 flex items-center gap-2 active:scale-95 transition-transform">
+          Ver Serviços
+          <span class="material-symbols-outlined text-base">arrow_forward</span>
+        </a>
+        <a href="#contacto"
+           class="px-6 py-3 bg-surface-container-high text-on-surface font-bold text-sm rounded-xl active:scale-95 transition-transform">
+          Contacto
+        </a>
+      </div>
+    </div>
+
+    <!-- Right visual -->
+    <div class="lg:col-span-5 relative hidden lg:block" data-reveal="scale" data-delay="2">
+      <!-- 3D floating visual -->
+      <div class="hero-3d">
+        <div class="aspect-square relative rounded-[4rem] overflow-hidden shadow-[0_32px_80px_rgba(0,63,135,.25)] bg-gradient-to-br from-primary via-primary-container to-secondary">
+          <div class="absolute inset-0 flex items-center justify-center opacity-10">
+            <span class="material-symbols-outlined text-white" style="font-size:18rem; font-variation-settings:'FILL' 1;">hub</span>
+          </div>
+          <!-- inner shine layer -->
+          <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none"></div>
+        </div>
+      </div>
+      <!-- Float card 1 -->
+      <div class="absolute -bottom-6 -left-8 bg-white/90 backdrop-blur-xl p-4 rounded-2xl shadow-xl flex items-center gap-3 float-card">
+        <div class="w-10 h-10 bg-secondary-container rounded-xl flex items-center justify-center">
+          <span class="material-symbols-outlined text-secondary text-lg" style="font-variation-settings:'FILL' 1;">trending_up</span>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-on-surface">Crescimento Digital</p>
+          <p class="text-[10px] text-on-surface-variant">Resultados mensuráveis</p>
+        </div>
+      </div>
+      <!-- Float card 2 -->
+      <div class="absolute -top-4 -right-6 bg-white/90 backdrop-blur-xl p-4 rounded-2xl shadow-xl float-card-2">
+        <span class="material-symbols-outlined text-secondary text-3xl mb-1 block" style="font-variation-settings:'FILL' 1;">psychology</span>
+        <p class="text-xs font-bold text-on-surface">Automação com IA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- wave: hero → services -->
+<div class="wave-divider bg-surface"><svg viewBox="0 0 1440 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,28 C360,56 1080,0 1440,28 L1440,56 L0,56 Z" fill="#eff4ff"/></svg></div>
+
+<!-- ================================================================
+     SERVICES — BENTO GRID
+================================================================ -->
+<section id="servicos" class="py-16 bg-surface-container-low">
+  <div class="max-w-6xl mx-auto px-8 md:px-12">
+    <div class="mb-10 text-center" data-reveal="up">
+      <span class="sec-label">O Que Fazemos</span>
+      <h2 class="font-headline text-3xl md:text-4xl font-extrabold text-primary tracking-tight mt-1">Nossos Serviços</h2>
+    </div>
+
+    <!-- Bento grid row 1 -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
+
+      <!-- Marketing Digital — large -->
+      <div class="md:col-span-7 tilt-card group relative flex flex-col justify-end overflow-hidden rounded-3xl bg-surface-container-lowest min-h-[340px] shadow-sm ghost-border" data-reveal="3d" data-delay="1">
+        <div class="tilt-shine"></div>
+        <div class="absolute inset-0 z-0">
+          <div class="w-full h-full bg-gradient-to-br from-primary/5 to-secondary/10"></div>
+        </div>
+        <div class="absolute top-0 right-0 w-2/3 h-full opacity-5 flex items-center justify-end pr-8">
+          <span class="material-symbols-outlined text-primary" style="font-size:16rem;">trending_up</span>
+        </div>
+        <div class="relative z-10 p-10">
+          <div class="w-14 h-14 bg-secondary rounded-2xl flex items-center justify-center text-on-secondary mb-6 shadow-lg">
+            <span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1;">trending_up</span>
+          </div>
+          <h3 class="font-headline text-3xl font-bold text-on-surface mb-3">Marketing Digital</h3>
+          <p class="text-on-surface-variant max-w-sm mb-6 leading-relaxed text-sm">
+            Estratégias de crescimento baseadas em dados. SEO, SEM, campanhas pagas e funis de conversão para captar e fidelizar clientes.
+          </p>
+          <ul class="flex flex-wrap gap-2">
+            <li class="px-4 py-1.5 bg-secondary/10 text-secondary rounded-lg text-xs font-bold">SEO / SEM</li>
+            <li class="px-4 py-1.5 bg-secondary/10 text-secondary rounded-lg text-xs font-bold">Campanhas Pagas</li>
+            <li class="px-4 py-1.5 bg-secondary/10 text-secondary rounded-lg text-xs font-bold">Email Marketing</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Redes Sociais -->
+      <div class="md:col-span-5 tilt-card bg-primary p-8 rounded-3xl text-on-primary flex flex-col justify-between group shadow-lg relative" data-reveal="3d" data-delay="2">
+        <div class="tilt-shine"></div>
+        <div>
+          <span class="material-symbols-outlined text-secondary-fixed text-5xl mb-6 block" style="font-variation-settings:'FILL' 1;">share</span>
+          <h3 class="font-headline text-3xl font-bold mb-4">Gestão de Redes Sociais</h3>
+          <p class="text-on-primary-container leading-relaxed text-sm">
+            Criação de conteúdo estratégico, gestão de comunidades e análise de desempenho no Facebook, Instagram, LinkedIn e mais.
+          </p>
+        </div>
+        <div class="flex gap-2 mt-8 flex-wrap">
+          <span class="px-3 py-1 bg-white/10 rounded-lg text-xs font-bold">Facebook</span>
+          <span class="px-3 py-1 bg-white/10 rounded-lg text-xs font-bold">Instagram</span>
+          <span class="px-3 py-1 bg-white/10 rounded-lg text-xs font-bold">LinkedIn</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bento grid row 2 -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
+
+      <!-- IA -->
+      <div class="md:col-span-4 tilt-card bg-surface-container-lowest p-7 rounded-3xl ghost-border shadow-sm flex flex-col justify-between relative" data-reveal="up" data-delay="1">
+        <div class="tilt-shine"></div>
+        <div>
+          <div class="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center text-on-secondary mb-6">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">psychology</span>
+          </div>
+          <h3 class="font-headline text-2xl font-bold text-on-surface mb-3">Automação com IA</h3>
+          <p class="text-on-surface-variant text-sm leading-relaxed">
+            Implementação de soluções de inteligência artificial para automatizar processos, reduzir custos e aumentar a produtividade.
+          </p>
+        </div>
+        <div class="mt-6 pt-6 border-t border-outline-variant/15">
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-xs font-semibold text-on-surface">
+              <span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings:'FILL' 1;">check_circle</span>
+              Chatbots Inteligentes
+            </li>
+            <li class="flex items-center gap-2 text-xs font-semibold text-on-surface">
+              <span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings:'FILL' 1;">check_circle</span>
+              Automação de Workflows
+            </li>
+            <li class="flex items-center gap-2 text-xs font-semibold text-on-surface">
+              <span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings:'FILL' 1;">check_circle</span>
+              Análise Preditiva
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Web Dev -->
+      <div class="md:col-span-5 tilt-card bg-surface-container-lowest p-7 rounded-3xl ghost-border shadow-sm flex flex-col justify-between relative overflow-hidden group" data-reveal="up" data-delay="2">
+        <div class="tilt-shine"></div>
+        <div class="absolute -right-8 -top-8 opacity-5 group-hover:opacity-10 transition-opacity">
+          <span class="material-symbols-outlined" style="font-size:14rem;">terminal</span>
+        </div>
+        <div class="relative z-10">
+          <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-on-primary mb-6">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">terminal</span>
+          </div>
+          <h3 class="font-headline text-2xl font-bold text-on-surface mb-3">Desenvolvimento Web &amp; Programação</h3>
+          <p class="text-on-surface-variant text-sm leading-relaxed">
+            Websites profissionais, aplicações web, sistemas e software personalizado — optimizados, seguros e com ótima experiência do utilizador.
+          </p>
+        </div>
+        <div class="flex gap-2 mt-6 flex-wrap relative z-10">
+          <span class="px-3 py-1 bg-primary/10 text-primary rounded-lg text-xs font-bold">Websites</span>
+          <span class="px-3 py-1 bg-primary/10 text-primary rounded-lg text-xs font-bold">Sistemas</span>
+          <span class="px-3 py-1 bg-primary/10 text-primary rounded-lg text-xs font-bold">APIs</span>
+          <span class="px-3 py-1 bg-primary/10 text-primary rounded-lg text-xs font-bold">Apps</span>
+        </div>
+      </div>
+
+      <!-- Equipamentos -->
+      <div class="md:col-span-3 bg-secondary-container/30 p-7 rounded-3xl flex flex-col justify-between ghost-border" data-reveal="up" data-delay="3">
+        <div>
+          <span class="material-symbols-outlined text-secondary text-4xl mb-4 block" style="font-variation-settings:'FILL' 1;">devices</span>
+          <h3 class="font-headline text-xl font-bold text-on-surface mb-3">Equipamentos &amp; Material</h3>
+          <p class="text-on-surface-variant text-sm leading-relaxed">
+            Fornecimento de equipamentos electrónicos e material de escritório de qualidade para a sua empresa.
+          </p>
+        </div>
+        <a href="#contacto" class="mt-6 bg-secondary text-on-secondary px-4 py-2.5 rounded-xl font-bold text-xs text-center active:scale-95 transition-transform block">
+          Pedir Orçamento
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- wave: services → about -->
+<div class="wave-divider bg-surface-container-low"><svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,24 C480,48 960,0 1440,24 L1440,48 L0,48 Z" fill="#f8f9ff"/></svg></div>
+
+<!-- ================================================================
+     ABOUT
+================================================================ -->
+<section id="sobre" class="py-16 bg-surface">
+  <div class="max-w-6xl mx-auto px-8 md:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-14">
+      <div data-reveal="left">
+        <span class="sec-label">Sobre Nós</span>
+        <h2 class="font-headline text-3xl md:text-4xl font-bold text-primary leading-tight mt-1 mb-4">Quem Somos.</h2>
+        <div class="h-1 w-12 bg-secondary rounded-full mb-5"></div>
+        <p class="text-base text-on-surface-variant leading-relaxed mb-4">
+          A <strong class="text-on-surface">Rede + Consultoria</strong> é uma empresa moçambicana de tecnologia e consultoria digital, baseada na <strong class="text-on-surface">Cidade da Beira, Alto da Manga</strong>, Província de Sofala.
+        </p>
+        <p class="text-sm text-on-surface-variant leading-relaxed">
+          Combinamos expertise em marketing digital, inteligência artificial e desenvolvimento de software para ajudar empresas a crescerem. Da Beira para o Mundo.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-4" data-reveal="right">
+        <div class="bg-surface-container-low p-5 rounded-2xl ghost-border">
+          <span class="material-symbols-outlined text-secondary text-2xl mb-3 block" style="font-variation-settings:'FILL' 1;">location_on</span>
+          <h4 class="font-headline font-bold text-on-surface text-sm mb-1">Presença Local</h4>
+          <p class="text-on-surface-variant text-xs leading-relaxed">Beira, Moçambique. Suporte presencial.</p>
+        </div>
+        <div class="bg-surface-container-low p-5 rounded-2xl ghost-border">
+          <span class="material-symbols-outlined text-secondary text-2xl mb-3 block" style="font-variation-settings:'FILL' 1;">tune</span>
+          <h4 class="font-headline font-bold text-on-surface text-sm mb-1">Personalizado</h4>
+          <p class="text-on-surface-variant text-xs leading-relaxed">Estratégias adaptadas a cada cliente.</p>
+        </div>
+        <div class="bg-surface-container-low p-5 rounded-2xl ghost-border">
+          <span class="material-symbols-outlined text-secondary text-2xl mb-3 block" style="font-variation-settings:'FILL' 1;">bolt</span>
+          <h4 class="font-headline font-bold text-on-surface text-sm mb-1">Entrega Ágil</h4>
+          <p class="text-on-surface-variant text-xs leading-relaxed">Cumprimos prazos com qualidade.</p>
+        </div>
+        <div class="bg-surface-container-low p-5 rounded-2xl ghost-border">
+          <span class="material-symbols-outlined text-secondary text-2xl mb-3 block" style="font-variation-settings:'FILL' 1;">headset_mic</span>
+          <h4 class="font-headline font-bold text-on-surface text-sm mb-1">Suporte Contínuo</h4>
+          <p class="text-on-surface-variant text-xs leading-relaxed">Acompanhamento após entrega.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- wave: about → projects -->
+<div class="wave-divider bg-surface"><svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 C360,48 1080,0 1440,32 L1440,48 L0,48 Z" fill="#eff4ff"/></svg></div>
+
+<!-- ================================================================
+     PROJECTS
+================================================================ -->
+<section id="projectos" class="py-16 bg-surface-container-low">
+  <div class="max-w-6xl mx-auto px-8 md:px-12">
+    <div class="mb-10 text-center" data-reveal="up">
+      <span class="sec-label">Os Nossos Projectos</span>
+      <h2 class="font-headline text-3xl md:text-4xl font-extrabold text-primary tracking-tight mt-1">Inovação em Acção</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- MozAcadémico — Featured -->
+      <div class="lg:col-span-7 group relative flex flex-col justify-end overflow-hidden rounded-3xl bg-primary min-h-[380px] shadow-xl" data-reveal="left" data-delay="1">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-on-background/80"></div>
+        <div class="absolute top-6 right-6 opacity-10">
+          <span class="material-symbols-outlined text-white" style="font-size:14rem;">school</span>
+        </div>
+        <div class="relative z-10 p-10 md:p-12">
+          <div class="flex items-center gap-2 mb-6">
+            <div class="w-2 h-2 bg-secondary-fixed rounded-full animate-pulse"></div>
+            <span class="text-secondary-fixed text-xs font-bold uppercase tracking-wider">Projecto Activo</span>
+          </div>
+          <h3 class="font-headline text-3xl md:text-4xl font-extrabold text-on-primary mb-3 tracking-tight">MozAcadémico</h3>
+          <p class="text-on-primary/80 mb-8 max-w-lg leading-relaxed">
+            Plataforma que dá visibilidade ao conhecimento produzido nas universidades moçambicanas. TCCs, monografias, dissertações e artigos científicos — acessíveis a todos os estudantes e investigadores.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://mozacademico.redemasconsultoria.com" target="_blank" rel="noopener"
+               class="bg-white text-primary px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 active:scale-95 transition-transform hover:bg-surface-container-low">
+              <span class="material-symbols-outlined text-sm">open_in_new</span>
+              Visitar Plataforma
+            </a>
+            <a href="mailto:mozacad@redemasconsultoria.com"
+               class="bg-white/10 backdrop-blur-md text-on-primary border border-white/20 px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-white/20 transition-all">
+              <span class="material-symbols-outlined text-sm">mail</span>
+              mozacad@redemasconsultoria.com
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side column -->
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        <!-- Mission card -->
+        <div class="bg-surface-container-lowest p-8 rounded-3xl ghost-border shadow-sm flex-1" data-reveal="right" data-delay="2">
+          <span class="material-symbols-outlined text-secondary text-4xl mb-4 block" style="font-variation-settings:'FILL' 1;">lightbulb</span>
+          <h4 class="font-headline text-xl font-bold text-on-surface mb-3">A Nossa Missão</h4>
+          <p class="text-on-surface-variant text-sm leading-relaxed">
+            Democratizar o acesso ao conhecimento académico moçambicano. Cada dissertação guardada numa gaveta é um contributo que o mundo não pôde aproveitar.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-lg text-xs font-bold">Repositório</span>
+            <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-lg text-xs font-bold">Pesquisa</span>
+            <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-lg text-xs font-bold">Universidades</span>
+          </div>
+        </div>
+
+        <!-- Próximos projectos -->
+        <div class="bg-secondary text-on-secondary p-8 rounded-3xl relative overflow-hidden" data-reveal="right" data-delay="3">
+          <div class="absolute -right-6 -bottom-6 opacity-10">
+            <span class="material-symbols-outlined" style="font-size:10rem;">rocket_launch</span>
+          </div>
+          <div class="relative z-10">
+            <span class="material-symbols-outlined text-secondary-fixed text-3xl mb-3 block" style="font-variation-settings:'FILL' 1;">rocket_launch</span>
+            <h4 class="font-headline text-lg font-bold mb-2">Novos Projectos</h4>
+            <p class="text-on-secondary/80 text-sm mb-4">Soluções inovadoras em desenvolvimento para o mercado moçambicano.</p>
+            <a href="#contacto"
+               class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 transition-colors px-4 py-2 rounded-xl text-xs font-bold">
+              Ser Parceiro
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- wave: projects → contact -->
+<div class="wave-divider bg-surface-container-low"><svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C480,0 960,40 1440,10 L1440,40 L0,40 Z" fill="#eff4ff"/></svg></div>
+
+<!-- ================================================================
+     CONTACT
+================================================================ -->
+<section id="contacto" class="py-16 bg-surface-container-low">
+  <div class="max-w-6xl mx-auto px-8 md:px-12">
+    <!-- Header centrado -->
+    <div class="text-center mb-12" data-reveal="up">
+      <span class="sec-label">Contacto</span>
+      <h2 class="font-headline text-3xl md:text-4xl font-extrabold text-primary tracking-tight mt-1 mb-3">Fale Connosco.</h2>
+      <p class="text-base text-on-surface-variant max-w-md mx-auto">
+        Estamos na Beira e prontos para responder. Escolha o canal que preferir.
+      </p>
+    </div>
+
+    <!-- Contact cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
+
+      <a href="tel:+258865443866" class="group bg-surface-container-lowest p-6 rounded-2xl ghost-border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all text-center" data-reveal="up" data-delay="1">
+        <div class="w-14 h-14 bg-surface-container-high rounded-2xl flex items-center justify-center mb-4 mx-auto group-hover:bg-secondary transition-colors">
+          <span class="material-symbols-outlined text-primary group-hover:text-on-secondary text-2xl transition-colors" style="font-variation-settings:'FILL' 1;">call</span>
+        </div>
+        <p class="font-label text-xs font-bold uppercase tracking-widest text-secondary mb-2">Telefone</p>
+        <p class="font-headline text-sm font-bold text-on-surface">+258 865 443 866</p>
+        <p class="font-headline text-sm font-bold text-on-surface">+258 865 443 866</p>
+      </a>
+
+      <a href="mailto:adm@redemasconsultoria.com" class="group bg-surface-container-lowest p-6 rounded-2xl ghost-border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all text-center" data-reveal="up" data-delay="2">
+        <div class="w-14 h-14 bg-surface-container-high rounded-2xl flex items-center justify-center mb-4 mx-auto group-hover:bg-secondary transition-colors">
+          <span class="material-symbols-outlined text-primary group-hover:text-on-secondary text-2xl transition-colors" style="font-variation-settings:'FILL' 1;">mail</span>
+        </div>
+        <p class="font-label text-xs font-bold uppercase tracking-widest text-secondary mb-2">Email</p>
+        <p class="font-headline text-sm font-bold text-on-surface break-all">adm@redemasconsultoria.com</p>
+      </a>
+
+      <div class="bg-surface-container-lowest p-6 rounded-2xl ghost-border shadow-sm text-center" data-reveal="up" data-delay="3">
+        <div class="w-14 h-14 bg-surface-container-high rounded-2xl flex items-center justify-center mb-4 mx-auto">
+          <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1;">location_on</span>
+        </div>
+        <p class="font-label text-xs font-bold uppercase tracking-widest text-secondary mb-2">Escritório</p>
+        <p class="font-headline text-sm font-bold text-on-surface">Alto da Manga, Beira</p>
+        <p class="text-on-surface-variant text-xs mt-1">Prov. de Sofala, Moçambique</p>
+      </div>
+    </div>
+
+    <!-- Action button -->
+    <div class="flex justify-center" data-reveal="up">
+      <a href="https://wa.me/258865443866" target="_blank" rel="noopener"
+         class="px-7 py-3.5 bg-secondary text-on-secondary rounded-xl font-bold text-sm flex items-center gap-2 shadow-lg shadow-secondary/20 active:scale-95 transition-transform hover:opacity-90">
+        <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">chat</span>
+        Iniciar Conversa no WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     WHATSAPP FLOAT
+================================================================ -->
+<a href="https://wa.me/258865443866" target="_blank" rel="noopener"
+   class="fixed bottom-24 md:bottom-8 right-6 z-40 w-14 h-14 bg-[#25d366] rounded-full flex items-center justify-center shadow-xl shadow-[#25d366]/40 hover:scale-110 active:scale-95 transition-transform"
+   title="Fale no WhatsApp">
+  <span class="material-symbols-outlined text-white text-2xl" style="font-variation-settings:'FILL' 1;">chat</span>
+</a>
+
+<!-- ================================================================
+     FOOTER
+================================================================ -->
+<footer class="site-footer pt-16 pb-8">
+  <div class="max-w-6xl mx-auto px-8 md:px-12">
+
+    <!-- Top grid — 4 columns -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 pb-12 border-b foot-divider">
+
+      <!-- Brand col -->
+      <div class="sm:col-span-2 md:col-span-1">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="foot-logo-icon">
+            <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1;">hub</span>
+          </div>
+          <span class="font-headline text-lg font-bold text-white tracking-tight">Rede + Consultoria</span>
+        </div>
+        <p class="text-sm leading-relaxed max-w-xs mb-6">
+          Soluções digitais e tecnológicas para empresas e empreendedores em Moçambique. Da Beira para o Mundo.
+        </p>
+        <div class="flex gap-3">
+          <a href="http://www.redemasconsultoria.com/" target="_blank" rel="noopener"
+             class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:border-secondary transition-colors"
+             title="Website">
+            <span class="material-symbols-outlined text-base">public</span>
+          </a>
+          <a href="https://wa.me/258865443866" target="_blank" rel="noopener"
+             class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#25d366] hover:border-[#25d366] hover:text-white transition-colors"
+             title="WhatsApp">
+            <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">chat</span>
+          </a>
+          <a href="mailto:adm@redemasconsultoria.com"
+             class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:border-secondary transition-colors"
+             title="Email">
+            <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">mail</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Serviços -->
+      <div>
+        <h4>Serviços</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#servicos">Marketing Digital</a></li>
+          <li><a href="#servicos">Gestão de Redes Sociais</a></li>
+          <li><a href="#servicos">Automação com IA</a></li>
+          <li><a href="#servicos">Desenvolvimento Web</a></li>
+          <li><a href="#servicos">Equipamentos</a></li>
+        </ul>
+      </div>
+
+      <!-- Empresa -->
+      <div>
+        <h4>Empresa</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#sobre">Sobre Nós</a></li>
+          <li><a href="#projectos">Projectos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li>
+            <a href="https://mozacademico.redemasconsultoria.com" target="_blank" rel="noopener" class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-xs text-[#5dd9d8]">school</span>
+              MozAcadémico
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contacto -->
+      <div>
+        <h4>Contacto</h4>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-2">
+            <span class="material-symbols-outlined text-[#5dd9d8] text-sm mt-0.5 shrink-0">location_on</span>
+            <span>Alto da Manga, Beira<br/>Prov. de Sofala, Moçambique</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#5dd9d8] text-sm shrink-0">call</span>
+            <a href="tel:+258865443866">+258 865 443 866</a>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#5dd9d8] text-sm shrink-0">mail</span>
+            <a href="mailto:adm@redemasconsultoria.com">adm@redemasconsultoria.com</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar — centered copyright -->
+    <div class="pt-8 text-center text-xs text-slate-600 space-y-1">
+      <p class="text-slate-500">© 2026 <strong class="text-slate-400 font-semibold">Rede + Consultoria</strong>. Todos os direitos reservados.</p>
+      <p>
+        <a href="http://www.redemasconsultoria.com/" class="hover:text-[#5dd9d8] transition-colors">www.redemasconsultoria.com</a>
+        <span class="mx-2 opacity-30">·</span>
+        Feito em Moçambique 🇲🇿
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================================================================
+     MOBILE BOTTOM NAV
+================================================================ -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-2 pb-5 pt-3 bg-white/80 backdrop-blur-xl z-50 shadow-[0_-8px_32px_rgba(11,28,48,0.08)] border-t border-outline-variant/15">
+  <a href="#inicio" class="bottom-nav-item flex flex-col items-center text-on-surface-variant px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined text-xl">home</span>
+    <span class="text-[9px] font-bold uppercase tracking-widest mt-0.5">Início</span>
+  </a>
+  <a href="#servicos" class="bottom-nav-item flex flex-col items-center text-on-surface-variant px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined text-xl">insights</span>
+    <span class="text-[9px] font-bold uppercase tracking-widest mt-0.5">Serviços</span>
+  </a>
+  <a href="#projectos" class="bottom-nav-item flex flex-col items-center text-on-surface-variant px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined text-xl">rocket_launch</span>
+    <span class="text-[9px] font-bold uppercase tracking-widest mt-0.5">Projectos</span>
+  </a>
+  <a href="#contacto" class="bottom-nav-item flex flex-col items-center text-on-surface-variant px-3 py-1 rounded-xl transition-colors">
+    <span class="material-symbols-outlined text-xl">mail</span>
+    <span class="text-[9px] font-bold uppercase tracking-widest mt-0.5">Contacto</span>
+  </a>
+</nav>
+
+<!-- ================================================================
+     JAVASCRIPT
+================================================================ -->
+<script>
+  /* ── Scroll progress bar ── */
+  const progressBar = document.getElementById('progress-bar');
+  function updateProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = pct + '%';
+  }
+
+  /* ── Header shadow on scroll ── */
+  const bar = document.getElementById('top-bar');
+  window.addEventListener('scroll', () => {
+    bar.classList.toggle('shadow-md', window.scrollY > 20);
+    updateProgress();
+  }, { passive: true });
+  updateProgress();
+
+  /* ── Hamburger toggle ── */
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+  document.querySelectorAll('.mobile-link').forEach(l =>
+    l.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden'))
+  );
+
+  /* ── Smooth scroll ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }); }
+    });
+  });
+
+  /* ── Scroll reveal with staggered delay ── */
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const delay = parseFloat(el.dataset.delay || 0) * 120; // ms per step
+      setTimeout(() => {
+        el.classList.add('visible');
+      }, delay);
+      revealObs.unobserve(el);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
+
+  /* ── 3D card tilt on mousemove ── */
+  document.querySelectorAll('.tilt-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5; // -0.5 to 0.5
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 8}deg) translateZ(6px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  /* ── Active bottom nav ── */
+  const sections = ['inicio','servicos','sobre','projectos','contacto'];
+  const navObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        document.querySelectorAll('.bottom-nav-item').forEach(i => {
+          const active = i.getAttribute('href') === '#' + id;
+          i.classList.toggle('text-primary', active);
+          i.classList.toggle('bg-surface-container-low', active);
+          i.classList.toggle('text-on-surface-variant', !active);
+        });
+      }
+    });
+  }, { threshold: 0.4, rootMargin: '-20% 0px -60% 0px' });
+  sections.forEach(id => { const el = document.getElementById(id); if (el) navObs.observe(el); });
+</script>
+</body>
+</html>
